@@ -1,5 +1,8 @@
 # fourier_transform-
 
+## 概要
+画像のフーリエ変換と逆フーリエ変換を行う実装を行う。
+
 ## File of fourier_transform
 
 女優 森七菜の画像のフーリエ変換を行った。
@@ -19,3 +22,35 @@ OpenCVはDFTを行う"cv2.dft()" とIDFTを行う"cv2.idft()"という関数を�
 ※cv2.cartToPolar() 関数を使い振幅と位相の両方を取得.
 IDFTを行う。ローパスフィルタ(高周波成分の除去)を試行する。ローパスフィルタは画像にボケを加える．まず初めに低周波領域に高い値を持ち，高周波領域が0となるマスクを作成する。
 
+## 参考URL/参考文献
+  - numpyとopenCVを使った画像のフーリエ変換と逆変換
+  https://www.hello-python.com/2018/02/16/numpyとopencvを使った画像のフーリエ変換と逆変換/
+  - OPENCV Table of Contents フーリエ変換
+  http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_imgproc/py_transforms/py_fourier_transform/py_fourier_transform.html
+
+## Python 実行環境
+  - Microsoft Azure Notebooks Python3 Powered by Jupyter
+  - Anaconda-Navigator
+  
+## 追加で実行したモジュール等（余分なものが入っている可能性あり）
+!pip install scikit-image==0.12.3
+import numpy as np
+from numpy.random import rand
+from numpy import uint8, float32, float64, log, pi, sin, cos, abs, sqrt
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.gray();
+from matplotlib.pyplot import imshow
+from skimage.io import imread, imsave
+from skimage.color import rgb2gray, rgb2hsv
+from skimage.transform import rotate, resize
+import skimage
+skmajor, skminor, sknumber = skimage.__version__.split(".")
+if int(skminor) >= 11:
+    from skimage.filters import threshold_otsu # version 0.11 and after
+else:
+    from skimage.filter import threshold_otsu # version 0.10 and before
+from scipy.ndimage.filters import convolve
+from __future__ import print_function, division
+from os.path import getsize
+from time import time
